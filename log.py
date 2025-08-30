@@ -8,7 +8,6 @@ class logger:
     def __init__(self, config=None, log_config=False, log_fc=False): 
         self.config = config
         logzero.logfile("/tmp/log.log")
-        l.debug("hello")
         if log_config:
             self.log_config()
         if log_fc:
@@ -40,3 +39,6 @@ class logger:
 
     def info(self, item):
         l.info(str(item))
+
+    def debug(self, item):
+        l.debug(item)

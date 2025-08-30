@@ -4,6 +4,7 @@ from picamzero import Camera as c
 import exif
 from astro_pi_orbit import ISS
 from log import logger
+import datetime
 
 iss = ISS()
 
@@ -18,8 +19,10 @@ def get_gps_coordinates(iss):
 
 @app.register_class
 class Photo:
-    def __init__(self, photo_path):
+    def __init__(self, photo_path, time, coords):
         self.photo = photo_path
+        self.time = time
+        self.gps = coords
 
 @app.register_class
 class Camera:
@@ -27,10 +30,18 @@ class Camera:
         self.cam = c()
         self.num_photos = 0
         self.log = logger()
+        self.photo_list = []
 
     def take_photo(self) -> Photo:
         photo_name = f"ISS{self.num_photos + 1}.jpg"
-        self.cam.take_photo(f"{photo_name}", gps_coordinates=get_gps_coordinates(iss))
+        gps_coords = get_gps_coordinates(iss)
+        self.cam.take_photo(f"{photo_name}", gps_coordinates=gps_coords)
         self.num_photos += 1
         self.log.info(f"Camera: Photo Taken NO: {self.num_photos}")
-        return Photo("gps_image1.jpg")
+
+        time = datetime.datetime.now()
+
+        p = Photo(photo_name, time, gps_coords)
+        self.photo_list.append(p)
+
+        return p
