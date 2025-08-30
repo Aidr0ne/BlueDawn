@@ -1,4 +1,4 @@
-from BlueDawn import *
+from BlueDawn import main
 
 if __name__ == "__main__":
     ans = main()

@@ -1,6 +1,7 @@
 import camera
 import Math
 import log
+from control import app
 
 from datetime import datetime, timedelta
 from time import sleep
@@ -11,10 +12,11 @@ with open("config.toml", "rb") as f:
 
 ###################################################################################################
 
+@app.register_function
 def main() -> int:
     """ Returns ISS Speed"""
 
-    l = log.logger(config=config, log_config=True)
+    l = log.logger(config=config, log_config=True, log_fc=True)
     cam = camera.Camera()
     start_time = datetime.now()
     now_time = datetime.now()

@@ -1,3 +1,5 @@
+from control import app
+
 from picamzero import Camera as c
 import exif
 from astro_pi_orbit import ISS
@@ -5,6 +7,7 @@ from log import logger
 
 iss = ISS()
 
+@app.register_function
 def get_gps_coordinates(iss):
     """
     Returns a tuple of latitude and longitude coordinates expressed
@@ -13,10 +16,12 @@ def get_gps_coordinates(iss):
     point = iss.coordinates()
     return (point.latitude.signed_dms(), point.longitude.signed_dms())
 
+@app.register_class
 class Photo:
     def __init__(self, photo_path):
         self.photo = photo_path
 
+@app.register_class
 class Camera:
     def __init__(self):
         self.cam = c()
