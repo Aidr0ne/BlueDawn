@@ -14,9 +14,15 @@ with open("config.toml", "rb") as f:
 def main() -> int:
     """ Returns ISS Speed"""
 
-    l = log.logger(config=config)
+    l = log.logger(config=config, log_config=True)
+    cam = camera.Camera()
     start_time = datetime.now()
     now_time = datetime.now()
+    speed = 0
+
     while (now_time < start_time + timedelta(minutes=config["TimeRun"])):
         now_time = datetime.now()
-    return 0
+
+    if speed == 0:
+        return int(config["DefualtSpeed"])
+    return speed
