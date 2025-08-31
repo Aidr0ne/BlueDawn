@@ -1,3 +1,10 @@
+import tomllib
+
+class Config:
+    def __init__(self):
+        with open("config.toml", "rb") as f:
+            self.config = tomllib.load(f)
+
 class App:
     def __init__(self):
         self.function_list = []
@@ -12,3 +19,4 @@ class App:
         return cls
 
 app = App()
+config = Config()

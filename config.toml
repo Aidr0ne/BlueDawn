@@ -1,3 +1,11 @@
-TimeRun = 10
+TimeRun = 1
 DefualtSpeed = 7.66
 TimeBetweenPhotos = 10
+
+[solution]
+[solution.matching]
+GSD = 25396.205 # DO NOT TOUCH HAS BEEN CALIBRATED TO 1024x1024
+
+[camera]
+[camera.Photo]
+NumberOfFeatures = 100

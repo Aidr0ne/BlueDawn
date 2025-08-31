@@ -33,6 +33,7 @@ class logger:
 
     def log_fc(self):
         l.info("##########################################CLASS'S#########################################")
+        print(app.function_list)
         self.log_array(app.class_list)
         l.info("#########################################FUNCTIONS########################################")
         self.log_array(app.function_list)
